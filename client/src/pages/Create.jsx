@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 import Loading from "../components/Loading";
+import FormInput from "../components/FormInput";
 
 function Create() {
   const [prompt, setPrompt] = useState("");
+  const [name, setName] = useState("");
   const [previewImg, setPreviewImg] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -40,17 +42,19 @@ function Create() {
         Create awesome images in an instant
       </h1>
       <form>
-        <label className="mb-4 ml-4 block" htmlFor="prompt">
-          Prompt
-        </label>
-        <input
-          className="block w-1/2 rounded-full border-2 border-slate-300 px-4 py-2 outline-none focus:border-slate-500"
-          id="prompt"
+        <FormInput
+          id="name"
+          title="Your name"
           type="text"
-          placeholder="Giant blue star in space"
+          value={name}
+          setValue={setName}
+        />
+        <FormInput
+          id="prompt"
+          title="Prompt"
+          type="text"
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          required
+          setValue={setPrompt}
         />
       </form>
       <div className="relative mt-8">
