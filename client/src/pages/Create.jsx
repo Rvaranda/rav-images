@@ -26,7 +26,6 @@ function Create() {
       );
 
       const data = await response.json();
-      // console.log(data.data[].b64_json);
       setPreviewImg(data.data[0].b64_json);
     } catch (err) {
       console.log(err.data?.message);
@@ -42,7 +41,7 @@ function Create() {
       </h1>
       <form>
         <label className="mb-4 ml-4 block" htmlFor="prompt">
-          Describe your image
+          Prompt
         </label>
         <input
           className="block w-1/2 rounded-full border-2 border-slate-300 px-4 py-2 outline-none focus:border-slate-500"
