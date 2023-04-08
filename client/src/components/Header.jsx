@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="bg-slate-200 p-4">
-      <section className="m-auto flex max-w-4xl items-center justify-between">
+    <header className="p-4">
+      <section className="m-auto flex max-w-7xl items-center justify-between">
         <div>
           <Link to="/">
-            <img src="http://via.placeholder.com/100x50" alt="logo" />
+            {/* <img src="http://via.placeholder.com/100x50" alt="logo" /> */}
+            <p className="text-3xl font-bold text-slate-500">RAV Images</p>
           </Link>
         </div>
         <Link

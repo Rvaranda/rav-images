@@ -1,12 +1,10 @@
 function Card() {
   return (
-    <div className="group relative max-w-md rounded-full">
+    <div className="group relative max-w-xs overflow-hidden rounded-md shadow-md">
       <img
-        className="object-contain"
-        src="http://via.placeholder.com/400x400"
+        className="object-fit h-80 w-80"
+        src="http://via.placeholder.com/320x320"
         alt="image"
-        width="400"
-        height="400"
       />
       <div className="absolute bottom-0 hidden bg-black/50 p-4 text-white group-hover:block">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
