@@ -15,21 +15,21 @@ function Create() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: prompt,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:8080/api/image?prompt=${prompt}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       // console.log(data.data[].b64_json);
       setPreviewImg(data.data[0].b64_json);
     } catch (err) {
-      console.log(err.data.message);
+      console.log(err.data?.message);
     } finally {
       setLoading(false);
     }
