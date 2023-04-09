@@ -36,6 +36,27 @@ function Create() {
     }
   }
 
+  async function createPost() {
+    try {
+      const response = await fetch("http://localhost:8080/api/image/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: name,
+          prompt,
+          imageData: previewImg,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <section className="p-16">
       <h1 className="mb-16 text-4xl font-bold">
@@ -78,6 +99,14 @@ function Create() {
         disabled={loading}
       >
         {loading ? "Generating..." : "Generate"}
+      </button>
+      <button
+        className="mt-2 block w-[500px] rounded-md bg-blue-600 p-2 text-lg text-white hover:bg-blue-800"
+        type="button"
+        onClick={createPost}
+        disabled={!previewImg}
+      >
+        Submit
       </button>
     </section>
   );
