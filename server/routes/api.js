@@ -24,8 +24,13 @@ router.get("/image", async (req, res) => {
   }
 });
 
-router.get("/images", async (req, res) => {
-  res.send("hello");
+router.get("/posts", async (req, res) => {
+  const posts = await Post.find();
+  if (!posts) {
+    return res.status(204).json({ message: "No images found" });
+  }
+
+  res.status(200).json(posts);
 });
 
 router.post("/image/submit", async (req, res) => {
@@ -34,7 +39,7 @@ router.post("/image/submit", async (req, res) => {
     return res.status(400).json({ message: "Username or prompt missing!" });
   }
 
-  const s3 = new S3Client({ region: "sa-east-1" });
+  const s3 = new S3Client({ region: process.env.REGION });
 
   const key = `RAV_${uuidv4()}_${new Date().getTime()}.png`;
   const imageUrl = `https://${process.env.BUCKET_NAME}.s3.${process.env.REGION}.amazonaws.com/${key}`;
