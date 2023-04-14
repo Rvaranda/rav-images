@@ -20,7 +20,7 @@ router.get("/image", async (req, res) => {
     res.status(200).json(response.data);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: "Image creation failed! Try again later." });
   }
 });
 
@@ -43,13 +43,13 @@ router.post("/image/submit", async (req, res) => {
 
   const key = `RAV_${uuidv4()}_${new Date().getTime()}.png`;
   const imageUrl = `https://${process.env.BUCKET_NAME}.s3.${process.env.REGION}.amazonaws.com/${key}`;
-  
+
   const command = new PutObjectCommand({
     Bucket: process.env.BUCKET_NAME,
     Key: key,
     Body: Buffer.from(imageData, "base64"),
     ContentEncoding: "base64",
-    ContentType: "image/png"
+    ContentType: "image/png",
   });
 
   try {
@@ -58,10 +58,9 @@ router.post("/image/submit", async (req, res) => {
 
     const post = await Post.create({ user, prompt, image: imageUrl });
     res.status(201).json(post);
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: "Something went wrong! Try again later." });
   }
 });
 
