@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { saveAs } from "file-saver";
 
 import Loading from "../components/Loading";
 import FormInput from "../components/FormInput";
@@ -8,6 +10,10 @@ function Create() {
   const [name, setName] = useState("");
   const [previewImg, setPreviewImg] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [promptError, setPromptError] = useState(false);
 
@@ -52,6 +58,17 @@ function Create() {
 
       const data = await response.json();
       console.log(data);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function downloadImage() {
+    try {
+      const response = await fetch(`data:image/png;base64,${previewImg}`);
+      const blobImg = await response.blob();
+      saveAs(blobImg, "image.png");
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +80,7 @@ function Create() {
         <h1 className="text-4xl font-bold">Create awesome images in an instant</h1>
       </div>
       <div className="mt-8 flex justify-between gap-16 px-16">
-        <div className="relative h-[600px] w-[600px]">
+        <div className="relative">
           <img
             className="rounded-lg object-contain"
             src={
@@ -76,11 +93,23 @@ function Create() {
             height={600}
           />
           {loading && <Loading />}
+          <button
+            type="button"
+            className="mt-4 block w-full rounded-md bg-black px-4 py-2 text-xl text-white disabled:bg-neutral-400"
+            onClick={() => downloadImage()}
+            disabled={!previewImg}
+          >
+            Download image
+          </button>
         </div>
         <div className="flex grow flex-col">
           <div className="mb-16 flex flex-col items-end gap-4">
             <FormInput
-              className={`${promptError ? "border-red-600 focus:border-red-600" : ""}`}
+              className={`${
+                promptError
+                  ? "border-red-600 focus:border-red-600"
+                  : "border-slate-300 focus:border-slate-500"
+              }`}
               id="prompt"
               title="Enter your prompt"
               type="text"

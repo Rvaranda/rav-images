@@ -10,7 +10,7 @@ function FormInput({ className, id, title, type, value, setValue }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         autoComplete="off"
-        className={`${className} block w-full rounded-full border-2 border-slate-300 px-4 py-2 outline-none focus:border-slate-500`}
+        className={`${className} block w-full rounded-full border-2 px-4 py-2 outline-none`}
         required
       />
     </div>
