@@ -10,12 +10,9 @@ function Create() {
   const [name, setName] = useState("");
   const [previewImg, setPreviewImg] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [promptError, setPromptError] = useState(false);
 
   const navigate = useNavigate();
-
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const [promptError, setPromptError] = useState(false);
 
   async function generateImage() {
     if (!prompt) {
