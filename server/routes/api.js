@@ -25,12 +25,17 @@ router.get("/image", async (req, res) => {
 });
 
 router.get("/posts", async (req, res) => {
-  const posts = await Post.find();
-  if (!posts) {
-    return res.status(204).json({ message: "No images found" });
-  }
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 });
+    if (!posts) {
+      return res.status(204).json({ message: "No images found" });
+    }
 
-  res.status(200).json(posts);
+    res.status(200).json(posts);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went wrong! Try again later." });
+  }
 });
 
 router.post("/image/submit", async (req, res) => {
