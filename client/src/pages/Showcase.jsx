@@ -9,8 +9,10 @@ function Showcase() {
     const fetchPosts = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/posts");
-        const data = await response.json();
-        setPosts(data);
+        if (response.ok) {
+          const data = await response.json();
+          setPosts(data);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -25,15 +27,13 @@ function Showcase() {
           Check awesome images made by the community
         </h1>
       </div>
-      {/*<input
-        className="m-auto block w-1/2 rounded-full border-2 border-slate-300 px-4 py-2 outline-none focus:border-slate-500"
-        type="text"
-        placeholder="Search here"
-  />*/}
-      {/* <div className="mt-8 flex items-center justify-center">
-        <p className="text-3xl text-slate-500">No images found</p>
-      </div> */}
-      <RenderCards posts={posts} />
+      {posts.length === 0 ? (
+        <div className="mt-8 flex items-center justify-center">
+          <p className="text-3xl text-slate-500">No images found</p>
+        </div>
+      ) : (
+        <RenderCards posts={posts} />
+      )}
     </section>
   );
 }
