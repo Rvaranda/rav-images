@@ -81,11 +81,7 @@ function Create() {
           <div className="relative">
             <img
               className="rounded-lg object-contain"
-              src={
-                previewImg
-                  ? `data:image/png;base64,${previewImg}`
-                  : "public/preview_placeholder.jpg"
-              }
+              src={previewImg ? `data:image/png;base64,${previewImg}` : "preview_placeholder.jpg"}
               alt="preview"
               width={600}
               height={600}
