@@ -126,7 +126,14 @@ function Create() {
         </div>
         <div className="order-3 mt-8 flex w-full max-w-2xl flex-col gap-4 sm:justify-self-center lg:order-none xl:justify-self-end">
           <h3 className="text-center text-2xl font-bold">Want to share your image?</h3>
-          <FormInput id="name" title="Your name" type="text" value={name} setValue={setName} />
+          <FormInput
+            className="border-slate-300 focus:border-slate-500"
+            id="name"
+            title="Your name"
+            type="text"
+            value={name}
+            setValue={setName}
+          />
           <button
             className="rounded-md bg-blue-600 py-2 text-lg text-white hover:bg-blue-800 disabled:bg-neutral-400 sm:w-36 sm:self-end"
             type="button"
