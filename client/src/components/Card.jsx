@@ -5,7 +5,7 @@ function Card({ post }) {
     <>
       <div className="group relative max-w-lg overflow-hidden rounded-md shadow-md">
         <img className="object-fit h-full w-full" src={post.image} alt="image" />
-        <div className="absolute bottom-0 hidden h-full w-full overflow-auto bg-black/70 p-4 text-white group-hover:block">
+        <div className=".scrollbar-hide absolute bottom-0 hidden h-full w-full overflow-auto bg-black/70 p-4 text-white group-hover:block">
           <p className="mb-4">{post.prompt}</p>
           <div className="flex items-center gap-1">
             <FaRegUserCircle />
