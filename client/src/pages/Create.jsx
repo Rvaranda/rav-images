@@ -84,7 +84,7 @@ function Create() {
               src={
                 previewImg
                   ? `data:image/png;base64,${previewImg}`
-                  : "http://via.placeholder.com/600x600"
+                  : "public/preview_placeholder.jpg"
               }
               alt="preview"
               width={600}
