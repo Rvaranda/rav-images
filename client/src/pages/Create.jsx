@@ -74,9 +74,11 @@ function Create() {
   return (
     <section className="">
       <div className="flex h-96 items-center justify-center bg-gradient-to-tl from-yellow-300 to-blue-500">
-        <h1 className="p-4 text-center text-4xl font-bold">Create awesome images in an instant</h1>
+        <h1 className="p-4 text-center text-4xl font-bold">
+          Create awesome images in an instant, powered by DALL-E
+        </h1>
       </div>
-      <div className="mt-8 grid gap-4 px-8 lg:grid-cols-2 lg:grid-rows-2">
+      <div className="my-8 grid gap-4 px-8 lg:grid-cols-2 lg:grid-rows-2">
         <div className="order-2 row-span-2 justify-self-center lg:order-none">
           <div className="relative">
             <img
@@ -86,7 +88,11 @@ function Create() {
               width={600}
               height={600}
             />
-            {loading && <Loading />}
+            {loading && (
+              <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black bg-opacity-40">
+                <Loading />
+              </div>
+            )}
           </div>
           <button
             type="button"
